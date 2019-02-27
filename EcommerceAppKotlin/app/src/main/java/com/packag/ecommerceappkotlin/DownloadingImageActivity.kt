@@ -19,3 +19,4 @@ class DownloadingImageActivity : AppCompatActivity() {
         }
     }
 }
+ 
