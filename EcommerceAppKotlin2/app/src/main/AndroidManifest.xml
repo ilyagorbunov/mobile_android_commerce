@@ -19,6 +19,8 @@
         <activity android:name=".ShowAllJSONObjectsActivity">
         </activity>
         <activity android:name=".DownloadingImageActivity">
+        </activity>
+        <activity android:name=".RVActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
