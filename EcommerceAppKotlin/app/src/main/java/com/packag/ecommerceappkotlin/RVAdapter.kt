@@ -2,24 +2,40 @@ package com.packag.ecommerceappkotlin
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class RVAdapter(contect: Context, arrayList: ArrayList<EProduct>):
+class RVAdapter( var context: Context, var arrayList: ArrayList<EProduct>):
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        var productView = LayoutInflater.from(context).inflate(
+            R.layout.rv_row,
+            parent, false)
+
+        return ProductViewHolder(productView)
 
     }
 
     override fun getItemCount(): Int {
 
+        return arrayList.size
+
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder,
+                                  position: Int) {
+
+        (holder as ProductViewHolder).initializedUIComponents(
+            arrayList[position].id,
+            arrayList[position].name,
+            arrayList[position].price,
+            arrayList[position].productPicature)
 
     }
 

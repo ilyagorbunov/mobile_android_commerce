@@ -2,10 +2,10 @@ package com.packag.ecommerceappkotlin
 
 class EProduct {
 
-    private var id: Int
-    private var name: String
-    private var price: Int
-    private var productPicature: Int
+    var id: Int
+    var name: String
+    var price: Int
+    var productPicature: Int
 
     constructor(i: Int, n: String, p: Int, pp: Int){
 
