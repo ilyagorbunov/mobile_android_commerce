@@ -13,19 +13,13 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".ShowJsonObjectActivity">
-        </activity>
-        <activity android:name=".ShowAllJSONObjectsActivity">
-        </activity>
-        <activity android:name=".DownloadingImageActivity">
-        </activity>
-        <activity android:name=".RVActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".SignUpLayout">
         </activity>
     </application>
 
