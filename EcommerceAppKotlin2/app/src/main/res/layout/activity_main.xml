@@ -25,7 +25,7 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:textColor="@android:color/black"
-            android:id="@+id/edtLoginEmail"/>
+            android:id="@+id/activity_main_edtEmail"/>
 
     <EditText
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:textColor="@android:color/black"
-            android:id="@+id/edtLoginPassword"/>
+            android:id="@+id/activity_main_edtPassword"/>
 
     <Button
             android:layout_width="match_parent"

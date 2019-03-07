@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".SignUpLayout">
         </activity>
+        <activity android:name=".HomeScreen">
+        </activity>
     </application>
 
 </manifest>
