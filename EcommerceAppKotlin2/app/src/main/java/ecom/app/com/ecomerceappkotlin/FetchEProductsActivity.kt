@@ -4,11 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.RequestFuture
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_fetch_eproducts.*
 
 class FetchEProductsActivity : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class FetchEProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fetch_eproducts)
 
         val selectedBrand:String = intent.getStringExtra("BRAND")
+        txtBrandName.text = "Products of $selectedBrand"
 
         var productsList = ArrayList<EProduct>()
 
@@ -34,6 +37,10 @@ class FetchEProductsActivity : AppCompatActivity() {
                     response.getJSONObject(productJOIndex).getString("picture")))
 
             }
+
+            val pAdapter = EProductAdapter(this@FetchEProductsActivity, productsList)
+            productsRV.layoutManager = LinearLayoutManager(this@FetchEProductsActivity)
+            productsRV.adapter = pAdapter
             
         }, Response.ErrorListener { error ->
 
@@ -43,6 +50,8 @@ class FetchEProductsActivity : AppCompatActivity() {
             dialogBuilder.create().show()
 
         })
+
+        requestQ.add(jsonAR)
 
     }
 }
