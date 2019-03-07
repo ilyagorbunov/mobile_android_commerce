@@ -1,6 +1,7 @@
 package ecom.app.com.ecomerceappkotlin
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -30,7 +31,7 @@ class HomeScreen : AppCompatActivity() {
                 brandsList.add(response.getJSONObject(jsonObject).getString("brand"))
             }
 
-            var brandsListAdapter = ArrayAdapter(this@HomeScreen, android.R.layout.simple_list_item_1, brandsList)
+            var brandsListAdapter = ArrayAdapter(this@HomeScreen, R.layout.brand_item_text_view, brandsList)
             brandsListView.adapter = brandsListAdapter
 
         }, Response.ErrorListener { error ->
@@ -43,6 +44,16 @@ class HomeScreen : AppCompatActivity() {
         })
 
         requestQ.add(jsonAR)
+        
+        brandsListView.setOnItemClickListener { adapterView, view, i, l ->
+
+            val tappedBrand = brandsList.get(i)
+            val intent = Intent(this@HomeScreen, FetchEProductsActivity::class.java)
+
+            intent.putExtra("BRAND", tappedBrand)
+            startActivity(intent)
+
+        }
 
     }
 }
