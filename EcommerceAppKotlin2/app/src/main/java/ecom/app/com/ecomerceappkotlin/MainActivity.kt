@@ -1,44 +1,70 @@
 package ecom.app.com.ecomerceappkotlin
 
+import android.app.AlertDialog
 import android.app.DownloadManager
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.android.volley.RequestQueue
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.sign_up_layout.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var sharedP: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnGetData.setOnClickListener{
+        activity_main_btnLogin.setOnClickListener{
 
-            val serverURL: String = "http://192.168.43.249/ecom/test_file.php"
-            val requestQ: RequestQueue = Volley.newRequestQueue(this@MainActivity)
-            val stringRequest = StringRequest(Request.Method.GET, serverURL,
+            val loginURL = "http://192.168.43.249/store/login_app_user.php?email=" +
+                    activity_main_edtEmail.text.toString() + "&pass=" +
+                    activity_main_edtPassword.text.toString()
 
-                Response.Listener { response ->
+            val requestQ = Volley.newRequestQueue(this@MainActivity)
+            val stringRequest = StringRequest(Request.Method.GET, loginURL, Response.Listener
+            { response ->
 
-                txtHelloWorld.text = response
+                if (response.equals("The user does exist")) {
 
-                }, Response.ErrorListener {error ->
+                    Person.email = activity_main_edtEmail.text.toString()
 
-                    txtHelloWorld.text = error.message
+                    Toast.makeText(this@MainActivity, response, Toast.LENGTH_SHORT).show()
 
-                })
+                    val homeIntent = Intent(this@MainActivity, HomeScreen::class.java)
+                    startActivity(homeIntent)
+
+                } else {
+
+                    val dialogBuilder = AlertDialog.Builder(this)
+                    dialogBuilder.setTitle("Message")
+                    dialogBuilder.setMessage(response)
+                    dialogBuilder.create().show()
+
+                }
+
+            }, Response.ErrorListener { error ->
+
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setTitle("Message")
+                dialogBuilder.setMessage(error.message)
+                dialogBuilder.create().show()
+
+            })
 
             requestQ.add(stringRequest)
+
+        }
+
+        activity_main_btnSignUp.setOnClickListener{
+
+            var signUpIntent = Intent(this@MainActivity, SignUpLayout::class.java)
+            startActivity(signUpIntent)
+
         }
     }
 }
