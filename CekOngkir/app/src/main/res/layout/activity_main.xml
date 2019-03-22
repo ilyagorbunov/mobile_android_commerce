@@ -21,6 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Kota Asal"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:textColorHint="@color/colorWhite"
                 android:textColor="@color/colorWhite"/>
 
@@ -29,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Kota Tujuan"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:layout_marginTop="5dp"
                 android:textColorHint="@color/colorWhite"
                 android:textColor="@color/colorWhite"/>
