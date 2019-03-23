@@ -3,6 +3,8 @@ package com.packag.cekongkir
 import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -77,5 +79,20 @@ class CityActivity : AppCompatActivity() {
             arrayOf("id", "name"), intArrayOf(R.id.txtId, R.id.txtName))
 
         listView.adapter = simpleAdapter
+
+        pencarianKota.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                simpleAdapter.getFilter().filter(pencarianKota.text)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+        })
     }
 }
