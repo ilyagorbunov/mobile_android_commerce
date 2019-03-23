@@ -1,8 +1,11 @@
 package com.packag.cekongkir
 
+import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.SimpleAdapter
 import com.androidnetworking.error.ANError
 import org.json.JSONObject
@@ -33,6 +36,7 @@ class CityActivity : AppCompatActivity() {
     }
 
     fun getCity(){
+        google_progress.visibility = VISIBLE
         AndroidNetworking.get(Api.CITY)
             .addHeaders("key", Api.KEY)
             .setTag("test")
@@ -45,6 +49,21 @@ class CityActivity : AppCompatActivity() {
 
                     val jsonObject = response.getJSONObject("rajaongkir")
                     val jsonArray = jsonObject.getJSONArray("results")
+
+                    Log.e("_count", jsonArray.length().toString())
+
+                    for (i in 0 until jsonArray.length()){
+                        val jsonObject1 = jsonArray.getJSONObject(i)
+                        Log.e("_province", jsonObject1.getString("province"))
+
+                        val map = HashMap<String, String>()
+                        map["id"] = jsonObject1.getString("city_id")
+                        map["name"] = jsonObject1.getString("city_name")
+                        arrayList.add(map)
+                    }
+
+                    google_progress.visibility = GONE
+                    setAdapter()
                 }
 
                 override fun onError(error: ANError) {
