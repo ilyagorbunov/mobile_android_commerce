@@ -15,7 +15,9 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.packag.cekongkir.data.Api
+import com.packag.cekongkir.data.Constant
 import kotlinx.android.synthetic.main.activity_city.*
+import kotlinx.android.synthetic.main.adapter_city.view.*
 
 
 class CityActivity : AppCompatActivity() {
@@ -79,6 +81,20 @@ class CityActivity : AppCompatActivity() {
             arrayOf("id", "name"), intArrayOf(R.id.txtId, R.id.txtName))
 
         listView.adapter = simpleAdapter
+
+        listView.setOnItemClickListener { parent, view, position, id ->
+            when(Constant.ORIGIN){
+                true -> {
+                    Constant.ORIGIN_ID      = view.txtId.text.toString()
+                    Constant.ORIGIN_NAME    = view.txtName.text.toString()
+                } false -> {
+                    Constant.DEST_ID        = view.txtId.text.toString()
+                    Constant.DEST_NAME      = view.txtName.text.toString()
+                }
+            }
+
+            finish()
+        }
 
         pencarianKota.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
