@@ -8,6 +8,7 @@ import org.json.JSONObject
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
+import com.packag.cekongkir.data.Api
 
 
 class CityActivity : AppCompatActivity() {
@@ -28,8 +29,8 @@ class CityActivity : AppCompatActivity() {
     }
 
     fun getCity(){
-        AndroidNetworking.get("https://api.rajaongkir.com/starter/city")
-            .addHeaders("key", "e2d1393065a094cb4225c85b2bb8a4fa")
+        AndroidNetworking.get(Api.CITY)
+            .addHeaders("key", Api.KEY)
             .setTag("test")
             .setPriority(Priority.MEDIUM)
             .build()
