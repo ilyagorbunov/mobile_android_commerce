@@ -77,8 +77,15 @@ class MainActivity : AppCompatActivity() {
 
                         val costsArray = resultsObject.getJSONArray("costs")
                         for (j in 0 until costsArray.length()){
-                            val costObject = costsArray.getJSONObject(j)
-                            Log.e("_logService", costObject["service"].toString())
+                            val costsObject = costsArray.getJSONObject(j)
+                            Log.e("_logService", costsObject["service"].toString())
+
+                            val costArray = costsObject.getJSONArray("cost")
+                            for (k in 0 until costArray.length()){
+                                val costObject = costArray.getJSONObject(k)
+
+                                Log.e("_logValue", costObject["value"].toString())
+                            }
 
 
                         }
