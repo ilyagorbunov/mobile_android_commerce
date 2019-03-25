@@ -1,5 +1,6 @@
 package ecom.app.com.ecomerceappkotlin
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -41,6 +42,15 @@ class EProductAdapter(var context: Context, var arrayList: ArrayList<EProduct>) 
             var picUrl = "http://192.168.43.249/store/osimages/"
             picUrl = picUrl.replace(" ", "%20")
             Picasso.get().load(picUrl + picName).into(itemView.imgProduct)
+
+            itemView.imgAdd.setOnClickListener {
+
+                Person.addToCartProductID = id
+                var amountFragment = AmountFragment()
+                var fragmentManager = (itemView.context as Activity).fragmentManager
+                amountFragment.show(fragmentManager, "TAG")
+
+            }
 
         }
 
