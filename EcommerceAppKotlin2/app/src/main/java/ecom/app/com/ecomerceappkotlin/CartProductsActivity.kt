@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_cart_products.*
 
@@ -58,6 +59,23 @@ class CartProductsActivity : AppCompatActivity() {
 
             var intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
+
+        } else if (item?.itemId == R.id.declineOrderItem) {
+
+            var deleteUrl = "http://192.168.43.249/store/decline_order.php?email=${Person.email}"
+            var requestQ = Volley.newRequestQueue(this@CartProductsActivity)
+            var stringRequest = StringRequest(Request.Method.GET, deleteUrl, Response.Listener { response ->
+
+                var intent = Intent(this, HomeScreen::class.java)
+                startActivity(intent)
+
+            }, Response.ErrorListener { error ->
+
+
+
+            })
+
+            requestQ.add(stringRequest)
 
         }
 
