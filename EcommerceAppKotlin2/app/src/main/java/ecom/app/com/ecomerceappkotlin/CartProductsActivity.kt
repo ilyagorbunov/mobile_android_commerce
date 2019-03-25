@@ -1,7 +1,10 @@
 package ecom.app.com.ecomerceappkotlin
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import com.android.volley.Request
 import com.android.volley.Response
@@ -42,4 +45,23 @@ class CartProductsActivity : AppCompatActivity() {
         requestQ.add(jsonAR)
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.cart_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.itemId == R.id.continueShoppingItem) {
+
+            var intent = Intent(this, HomeScreen::class.java)
+            startActivity(intent)
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 }
