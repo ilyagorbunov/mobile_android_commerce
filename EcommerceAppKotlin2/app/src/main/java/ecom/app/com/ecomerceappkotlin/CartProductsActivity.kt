@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
@@ -77,6 +78,24 @@ class CartProductsActivity : AppCompatActivity() {
 
             requestQ.add(stringRequest)
 
+        } else if (item?.itemId == R.id.verifyOrderItem) {
+
+            var verifyOrderUrl = "http://192.168.43.249/store/verify_order.php?email=${Person.email}"
+            var requestQ = Volley.newRequestQueue(this@CartProductsActivity)
+            var stringRequest = StringRequest(Request.Method.GET, verifyOrderUrl, Response.Listener { response ->
+
+                var intent = Intent(this, FinalizeShoppingActivity::class.java)
+                Toast.makeText(this, response, Toast.LENGTH_LONG).show()
+                intent.putExtra("LATEST_INVOICE_NUMBER", response)
+                startActivity(intent)
+
+            }, Response.ErrorListener { error ->
+
+
+
+            })
+
+            requestQ.add(stringRequest)
         }
 
         return super.onOptionsItemSelected(item)
