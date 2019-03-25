@@ -3,8 +3,13 @@ package com.packag.cekongkir
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.SimpleAdapter
 import android.widget.Toast
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -14,9 +19,12 @@ import com.packag.cekongkir.data.Api
 import com.packag.cekongkir.data.Constant
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.adapter_city.view.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
+
+    val arrayList = ArrayList<HashMap<String, String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +60,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getCost(){
+
+        arrayList.clear()
+        listCekOngkir.adapter = null
+        progressBarCekOngkir.visibility = VISIBLE
+
         AndroidNetworking.post(Api.COST)
             .addHeaders("key", Api.KEY)
             .addBodyParameter("origin", Constant.ORIGIN_ID)
@@ -80,17 +93,28 @@ class MainActivity : AppCompatActivity() {
                             val costsObject = costsArray.getJSONObject(j)
                             Log.e("_logService", costsObject["service"].toString())
 
+                            val service:String = costsObject["service"].toString()
+                            val description:String = costsObject["service"].toString()
+
                             val costArray = costsObject.getJSONArray("cost")
                             for (k in 0 until costArray.length()){
                                 val costObject = costArray.getJSONObject(k)
 
                                 Log.e("_logValue", costObject["value"].toString())
+
+                                val map = HashMap<String, String>()
+                                map["code"] = code
+                                map["service"] = service
+                                map["description"] = description
+                                map["value"] = costObject["value"].toString()
+                                map["etd"] = costObject["etd"].toString() + "hari"
+                                arrayList.add(map)
                             }
-
-
                         }
                     }
 
+                    progressBarCekOngkir.visibility = GONE
+                    setAdapter()
 
                 }
 
@@ -98,6 +122,18 @@ class MainActivity : AppCompatActivity() {
                     // handle error
                 }
             })
+
+    }
+
+    fun setAdapter(){
+        val simpleAdapter = SimpleAdapter(this, arrayList, R.layout.adapter_city,
+            arrayOf("code", "service", "description", "value", "etd"),
+            intArrayOf(R.id.txtCode, R.id.txtService, R.id.txtDescription, R.id.txtValue, R.id.txtEtd))
+
+        listCekOngkir.adapter = simpleAdapter
+
+
+
 
     }
 }
