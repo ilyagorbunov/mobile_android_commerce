@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".FetchEProductsActivity">
         </activity>
+        <activity android:name=".CartProductsActivity">
+        </activity>
     </application>
 
 </manifest>
