@@ -17,6 +17,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.packag.cekongkir.data.Api
 import com.packag.cekongkir.data.Constant
+import com.packag.cekongkir.utils.Converter
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.adapter_city.view.*
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                                 map["code"] = code
                                 map["service"] = service
                                 map["description"] = description
-                                map["value"] = costObject["value"].toString()
+                                map["value"] = "IDR " + Converter.rupiah(costObject["value"].toString().toDouble())
                                 map["etd"] = costObject["etd"].toString() + "hari"
                                 arrayList.add(map)
                             }
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setAdapter(){
-        val simpleAdapter = SimpleAdapter(this, arrayList, R.layout.adapter_city,
+        val simpleAdapter = SimpleAdapter(this, arrayList, R.layout.adapter_main,
             arrayOf("code", "service", "description", "value", "etd"),
             intArrayOf(R.id.txtCode, R.id.txtService, R.id.txtDescription, R.id.txtValue, R.id.txtEtd))
 
