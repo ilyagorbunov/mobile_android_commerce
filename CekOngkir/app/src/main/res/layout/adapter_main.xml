@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/txtCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JNE"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"/>
+        <TextView
+                android:id="@+id/txtService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OKE"
+                android:textColor="@color/colorWhite"/>
+        <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ongkor Kirim Ekonomis"
+                android:textSize="10sp"
+                android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+        <TextView
+                android:id="@+id/txtValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 16.000"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"/>
+        <TextView
+                android:id="@+id/txtEtd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3-4 day"
+                android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
