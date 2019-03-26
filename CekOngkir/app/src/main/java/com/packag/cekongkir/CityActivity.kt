@@ -14,6 +14,9 @@ import org.json.JSONObject
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
+//import com.google.android.gms.ads.AdListener
+//import com.google.android.gms.ads.AdRequest
+//import com.google.android.gms.ads.InterstitialAd
 import com.packag.cekongkir.data.Api
 import com.packag.cekongkir.data.Constant
 import kotlinx.android.synthetic.main.activity_city.*
@@ -24,17 +27,21 @@ class CityActivity : AppCompatActivity() {
 
     var arrayList = ArrayList<HashMap<String, String>>()
 
+//    var interstitialAd:InterstitialAd? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city)
 
         getCity()
+//        getAds()
 
         supportActionBar!!.setTitle("Pilih Kota")
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {
+//        interstitialAd!!.show()
         finish()
         return true
     }
@@ -111,4 +118,21 @@ class CityActivity : AppCompatActivity() {
 
         })
     }
+
+//    fun getAds(){
+//        val adRequest: AdRequest = AdRequest.Builder().build()
+//        adView.loadAd(adRequest)
+//
+//        interstitialAd = InterstitialAd(this)
+//        interstitialAd!!.adUnitId = getString(R.string.interstitial_ad_unit_id)
+//        interstitialAd!!.loadAd(adRequest)
+//
+//        interstitialAd!!.adListener = object : AdListener() {
+//            override fun onAdClosed() {
+//                super.onAdClosed()
+//                interstitialAd!!.loadAd(adRequest)
+//            }
+//        }
+//    }
+
 }

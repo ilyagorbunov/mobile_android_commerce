@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CekOngkir</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3981661118100093/3064010139</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3981661118100093/2477331557</string>
 </resources>
