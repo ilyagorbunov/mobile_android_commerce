@@ -17,6 +17,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.packag.cekongkir.data.Api
 import com.packag.cekongkir.data.Constant
+import com.packag.cekongkir.data.Prefs
 import com.packag.cekongkir.utils.Converter
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,9 +28,19 @@ class MainActivity : AppCompatActivity() {
 
     val arrayList = ArrayList<HashMap<String, String>>()
 
+    var prefs: Prefs? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        prefs = Prefs(this)
+
+        editOrigin.setText(prefs!!.originName)
+        editDestination.setText((prefs!!.destinationName))
+
+        Constant.ORIGIN_ID = prefs!!.originId
+        Constant.DEST_ID = prefs!!.destinationId
 
         editOrigin.setOnClickListener{
             Constant.ORIGIN = true
@@ -54,8 +65,15 @@ class MainActivity : AppCompatActivity() {
         when(Constant.ORIGIN){
             true -> {
                 editOrigin.setText( Constant.ORIGIN_NAME)
+
+                prefs!!.originId = Constant.ORIGIN_ID
+                prefs!!.originName = Constant.ORIGIN_NAME
+
             } false -> {
                 editDestination.setText(Constant.DEST_NAME)
+
+                prefs!!.destinationId = Constant.DEST_ID
+                prefs!!.destinationName = Constant.DEST_NAME
             }
         }
     }
