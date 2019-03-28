@@ -151,8 +151,5 @@ class MainActivity : AppCompatActivity() {
 
         listCekOngkir.adapter = simpleAdapter
 
-
-
-
     }
 }
