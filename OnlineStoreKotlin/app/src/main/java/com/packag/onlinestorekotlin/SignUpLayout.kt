@@ -50,6 +50,8 @@ class SignUpLayout : AppCompatActivity() {
 //                        dialogBuilder.setMessage(response)
 //                        dialogBuilder.create().show()
 
+                        Person.email = sign_up_layout_edtEmail.text.toString()
+
                         Toast.makeText(this@SignUpLayout, response, Toast.LENGTH_SHORT).show()
                         val homeIntent = Intent(this@SignUpLayout, HomeScreen::class.java)
                         startActivity(homeIntent)
