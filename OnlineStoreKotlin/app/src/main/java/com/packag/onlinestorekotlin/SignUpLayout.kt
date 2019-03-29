@@ -27,7 +27,7 @@ class SignUpLayout : AppCompatActivity() {
             if (sign_up_layout_edtPassword.text.toString().equals(
                     sign_up_layout_edtConfirmPassword.text.toString())){
 
-                val signUpURL = "http://10.5.28.122/Ecommerc/join_new_user.php?email=" +
+                val signUpURL = "http://192.168.1.5/Ecommerc/join_new_user.php?email=" +
                         sign_up_layout_edtEmail.text.toString() + "&username=" +
                         sign_up_layout_edtUsername.text.toString() + "&pass=" +
                         sign_up_layout_edtPassword.text.toString()
