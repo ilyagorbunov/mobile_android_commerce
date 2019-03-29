@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide()
+
         btnLogin.setOnClickListener{
 
             val loginURL = "http://10.5.28.122/Ecommerc/login_app_user.php?email=" +
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
                 if (response.equals("The user does exist")) {
 
                     Toast.makeText(this@MainActivity, response, Toast.LENGTH_SHORT).show()
+                    val homeIntent = Intent(this@MainActivity, HomeScreen::class.java)
+                    startActivity(homeIntent)
 
                 } else {
 
