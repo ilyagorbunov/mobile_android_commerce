@@ -1,9 +1,16 @@
 package com.packag.onlinestorekotlin
 
+
+import android.app.VoiceInteractor
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sign_up_layout.*
 
@@ -14,23 +21,64 @@ class SignUpLayout : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up_layout)
 
         supportActionBar!!.setTitle("Sign Up")
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        btnSignUp.setOnClickListener() {
+        sign_up_layout_btnSignUp.setOnClickListener{
 
-            if (edtSignUpPassword.text.toString().equals(
-                    edtSignUpConfirmPassword.text.toString())){
+            if (sign_up_layout_edtPassword.text.toString().equals(
+                    sign_up_layout_edtConfirmPassword.text.toString())){
 
-                // registration
+                val signUpURL = "http://10.5.28.122/Ecommerc/join_new_user.php?email=" +
+                        sign_up_layout_edtEmail.text.toString() + "&username=" +
+                        sign_up_layout_edtUsername.text.toString() + "&pass=" +
+                        sign_up_layout_edtPassword.text.toString()
 
-            } else {
+                val requestQ = Volley.newRequestQueue(this@SignUpLayout)
+                val stringRequest = StringRequest(Request.Method.GET, signUpURL, Response.Listener
+                { response ->
+
+                    if (response.equals("A user with this Email Address already exists")){
+
+                        val dialogBuilder = AlertDialog.Builder(this)
+                        dialogBuilder.setTitle("Message")
+                        dialogBuilder.setMessage(response)
+                        dialogBuilder.create().show()
+
+                    } else {
+
+                        val dialogBuilder = AlertDialog.Builder(this)
+                        dialogBuilder.setTitle("Message")
+                        dialogBuilder.setMessage(response)
+                        dialogBuilder.create().show()
+
+
+                    }
+
+                }, Response.ErrorListener { error ->
+
+                    val dialogBuilder = AlertDialog.Builder(this)
+                    dialogBuilder.setTitle("Message")
+                    dialogBuilder.setMessage(error.message)
+                    dialogBuilder.create().show()
+
+                })
+
+                requestQ.add(stringRequest)
+
+            } else{
+
                 val dialogBuilder = AlertDialog.Builder(this)
                 dialogBuilder.setTitle("Message")
                 dialogBuilder.setMessage("Password Mismatch")
                 dialogBuilder.create().show()
 
             }
+        }
+
+        sign_up_layout_btnLogin.setOnClickListener{
+
+            finish()
 
         }
+
     }
 }

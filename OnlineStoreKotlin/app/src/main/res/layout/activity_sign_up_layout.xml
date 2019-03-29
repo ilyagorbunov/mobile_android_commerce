@@ -23,7 +23,7 @@
                 android:textColor="@color/blue_grey_200" />
 
         <android.support.design.widget.TextInputEditText
-                android:id="@+id/edtSignUpEmail"
+                android:id="@+id/sign_up_layout_edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -44,7 +44,7 @@
                 android:textColor="@color/blue_grey_200" />
 
         <android.support.design.widget.TextInputEditText
-                android:id="@+id/edtSignUpUsername"
+                android:id="@+id/sign_up_layout_edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -65,7 +65,7 @@
                 android:textColor="@color/blue_grey_200" />
 
         <android.support.design.widget.TextInputEditText
-                android:id="@+id/edtSignUpPassword"
+                android:id="@+id/sign_up_layout_edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -86,7 +86,7 @@
                 android:textColor="@color/blue_grey_200" />
 
         <android.support.design.widget.TextInputEditText
-                android:id="@+id/edtSignUpConfirmPassword"
+                android:id="@+id/sign_up_layout_edtConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -103,7 +103,7 @@
                 android:layout_height="@dimen/spacing_mxlarge" />
 
         <Button
-                android:id="@+id/btnSignUp"
+                android:id="@+id/sign_up_layout_btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginLeft="-4dp"
@@ -120,7 +120,7 @@
                 android:layout_height="@dimen/spacing_medium" />
 
         <Button
-                android:id="@+id/btnSignUpLogin"
+                android:id="@+id/sign_up_layout_btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginLeft="-4dp"
