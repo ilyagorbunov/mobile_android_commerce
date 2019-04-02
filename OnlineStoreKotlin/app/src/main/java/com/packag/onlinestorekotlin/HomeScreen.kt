@@ -1,5 +1,6 @@
 package com.packag.onlinestorekotlin
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -16,7 +17,7 @@ class HomeScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
-        var brandsUrl = "http://192.168.1.5/Ecommerc/fetch_brands.php"
+        var brandsUrl = "http://192.168.43.103/Ecommerc/fetch_brands.php"
 
         var brandsList = ArrayList<String>()
 
@@ -29,6 +30,9 @@ class HomeScreen : AppCompatActivity() {
                 brandsList.add(response.getJSONObject(jsonObject).getString("brand"))
             }
 
+            var brandsListAdapter = ArrayAdapter(this@HomeScreen, R.layout.brand_item_text_view, brandsList)
+            brandsListView.adapter = brandsListAdapter
+
         }, Response.ErrorListener { error ->
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setTitle("Message")
@@ -39,7 +43,14 @@ class HomeScreen : AppCompatActivity() {
 
         requestQ.add(jsonAR)
 
-        var brandsListAdapter = ArrayAdapter(this@HomeScreen, android.R.layout.simple_list_item_1, brandsList)
-        brandsListView.adapter = brandsListAdapter
+        brandsListView.setOnItemClickListener{ adapterView, view, i, l ->
+
+            val tappedBrand = brandsList.get(i)
+            val intent = Intent(this@HomeScreen, FetchEProductsActivity::class.java)
+
+            intent.putExtra("BRAND", tappedBrand)
+            startActivity(intent)
+        }
+
     }
 }
