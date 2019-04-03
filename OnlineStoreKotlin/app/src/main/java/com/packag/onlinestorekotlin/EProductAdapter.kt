@@ -2,6 +2,7 @@ package com.packag.onlinestorekotlin
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
@@ -12,15 +13,21 @@ class EProductAdapter(var context: Context,
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val productView = LayoutInflater.from(context).inflate(R.layout.e_product_row, parent, false)
+
+        return ProductViewHolder(productView)
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return arrayList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        (holder as ProductViewHolder).initializeRowUIComponents(
+            arrayList.get(position).id,
+            arrayList.get(position).name,
+            arrayList.get(position).price,
+            arrayList.get(position).pictureName)
     }
 
     inner class ProductViewHolder(pView: View) : RecyclerView.ViewHolder(pView){
