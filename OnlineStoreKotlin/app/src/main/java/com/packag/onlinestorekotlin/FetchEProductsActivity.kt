@@ -17,6 +17,7 @@ class FetchEProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fetch_eproducts)
 
         val selectedBrand:String = intent.getStringExtra("BRAND")
+        txtBrandName.text = "Products of $selectedBrand"
 
         val productsUrl = "http://192.168.43.103/ecommerc/fetch_eproducts.php?brand=$selectedBrand"
 
