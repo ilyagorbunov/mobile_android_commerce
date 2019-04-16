@@ -9,5 +9,4 @@ class Api {
         val COST     = BASE_URL + "cost"
         val KEY      = "e2d1393065a094cb4225c85b2bb8a4fa"
     }
-
 }

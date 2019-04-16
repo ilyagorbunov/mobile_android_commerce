@@ -19,7 +19,7 @@ class FetchEProductsActivity : AppCompatActivity() {
         val selectedBrand:String = intent.getStringExtra("BRAND")
         txtBrandName.text = "Products of $selectedBrand"
 
-        val productsUrl = "http://192.168.43.103/ecommerc/fetch_eproducts.php?brand=$selectedBrand"
+        val productsUrl = "http://10.1.206.208/ecommerc/fetch_eproducts.php?brand=$selectedBrand"
 
         val productsList = ArrayList<EProduct>()
 

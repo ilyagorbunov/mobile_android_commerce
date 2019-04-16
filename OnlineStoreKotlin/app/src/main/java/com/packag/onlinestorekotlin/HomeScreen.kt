@@ -17,7 +17,7 @@ class HomeScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
-        var brandsUrl = "http://192.168.43.103/Ecommerc/fetch_brands.php"
+        var brandsUrl = "http://10.1.206.208/Ecommerc/fetch_brands.php"
 
         var brandsList = ArrayList<String>()
 

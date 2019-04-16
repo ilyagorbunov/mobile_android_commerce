@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener{
 
-            val loginURL = "http://192.168.43.103/Ecommerc/login_app_user.php?email=" +
+            val loginURL = "http://10.1.206.208/Ecommerc/login_app_user.php?email=" +
                     edtLoginEmail.text.toString() + "&pass=" +
                     edtLoginPassword.text.toString()
 

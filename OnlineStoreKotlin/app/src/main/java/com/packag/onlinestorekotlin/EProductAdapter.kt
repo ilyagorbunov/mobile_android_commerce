@@ -42,6 +42,10 @@ class EProductAdapter(var context: Context,
             picUrl = picUrl.replace(" ", "%20")
             Picasso.get().load(picUrl + picName).into(itemView.imgProduct)
 
+            itemView.imgAdd.setOnClickListener{
+
+            }
+
 
         }
 
