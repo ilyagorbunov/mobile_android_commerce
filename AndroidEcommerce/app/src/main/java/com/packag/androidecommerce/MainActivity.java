@@ -1,45 +1,41 @@
  package com.packag.androidecommerce;
 
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.os.Message;
-import android.support.annotation.CheckResult;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+ import android.app.AlertDialog;
+ import android.content.Intent;
+ import android.content.pm.PackageInfo;
+ import android.content.pm.PackageManager;
+ import android.content.pm.Signature;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.text.TextUtils;
+ import android.util.Base64;
+ import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.Toast;
 
-import com.facebook.accountkit.Account;
-import com.facebook.accountkit.AccountKit;
-import com.facebook.accountkit.AccountKitCallback;
-import com.facebook.accountkit.AccountKitError;
-import com.facebook.accountkit.AccountKitLoginResult;
-import com.facebook.accountkit.ui.AccountKitActivity;
-import com.facebook.accountkit.ui.AccountKitConfiguration;
-import com.facebook.accountkit.ui.LoginType;
-import com.packag.androidecommerce.Model.CheckUserResponse;
-import com.packag.androidecommerce.Retrofit.IDrinkShopAPI;
-import com.packag.androidecommerce.Utils.Common;
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.szagurskii.patternedtextwatcher.PatternedTextWatcher;
+ import com.facebook.accountkit.Account;
+ import com.facebook.accountkit.AccountKit;
+ import com.facebook.accountkit.AccountKitCallback;
+ import com.facebook.accountkit.AccountKitError;
+ import com.facebook.accountkit.AccountKitLoginResult;
+ import com.facebook.accountkit.ui.AccountKitActivity;
+ import com.facebook.accountkit.ui.AccountKitConfiguration;
+ import com.facebook.accountkit.ui.LoginType;
+ import com.rengwuxian.materialedittext.MaterialEditText;
+ import com.szagurskii.patternedtextwatcher.PatternedTextWatcher;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+ import java.security.MessageDigest;
+ import java.security.NoSuchAlgorithmException;
 
-import dmax.dialog.SpotsDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
+ import com.packag.androidecommerce.Model.CheckUserResponse;
+ import com.packag.androidecommerce.Retrofit.IDrinkShopAPI;
+ import com.packag.androidecommerce.Utils.Common;
+ import dmax.dialog.SpotsDialog;
+ import retrofit2.Call;
+ import retrofit2.Callback;
+ import retrofit2.Response;
 
  public class MainActivity extends AppCompatActivity {
 
@@ -145,8 +141,8 @@ import retrofit2.Response;
 
      private void showRegisterDialog(final String phone) {
 
-         final android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
-         alertDialog.setTitle("REGISTER");
+         final AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+         builder.setTitle("REGISTER");
 
          LayoutInflater inflater = this.getLayoutInflater();
          final View register_layout = inflater.inflate(R.layout.register_layout, null);
@@ -159,13 +155,15 @@ import retrofit2.Response;
 
          edt_birthdate.addTextChangedListener(new PatternedTextWatcher("####-##-##"));
 
+         builder.setView(register_layout);
+         final AlertDialog dialog = builder.create();
          //event
          btn_register.setOnClickListener(new View.OnClickListener(){
              @Override
              public void onClick(View v){
 
                  //close dialog
-                 alertDialog.create().dismiss();
+                 dialog.dismiss();
 
                  if(TextUtils.isEmpty(edt_address.getText().toString()))
                  {
@@ -211,8 +209,8 @@ import retrofit2.Response;
                          });
              }
          });
-         alertDialog.setView(register_layout);
-         alertDialog.show();
+
+         dialog.show();
      }
 
      private void printKeyHash() {

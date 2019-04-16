@@ -5,7 +5,7 @@ import com.packag.androidecommerce.Retrofit.RetrofitClient;
 
 public class Common {
     //config ip
-    private static final String BASE_URL = "http://localhost/shop/";
+    private static final String BASE_URL = "http://192.168.43.103/shop_jamu/";
 
     public static IDrinkShopAPI getAPI()
     {
