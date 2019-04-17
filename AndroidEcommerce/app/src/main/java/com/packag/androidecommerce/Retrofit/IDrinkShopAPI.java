@@ -1,7 +1,7 @@
 package com.packag.androidecommerce.Retrofit;
 
 import com.packag.androidecommerce.Model.CheckUserResponse;
-import com.packag.androidecommerce.User;
+import com.packag.androidecommerce.Model.User;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -19,5 +19,9 @@ public interface IDrinkShopAPI {
                                @Field("name") String name,
                                @Field("address") String address,
                                @Field("birthdate") String birthdate);
+
+    @FormUrlEncoded
+    @POST("getuser.php")
+    Call<User> getUserInformation(@Field("phone") String phone);
 
 }

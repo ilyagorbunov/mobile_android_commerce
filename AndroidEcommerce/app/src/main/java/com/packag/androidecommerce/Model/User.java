@@ -1,4 +1,4 @@
-package com.packag.androidecommerce;
+package com.packag.androidecommerce.Model;
 
 public class User {
     private String phone;

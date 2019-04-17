@@ -23,6 +23,7 @@
  import com.facebook.accountkit.ui.AccountKitActivity;
  import com.facebook.accountkit.ui.AccountKitConfiguration;
  import com.facebook.accountkit.ui.LoginType;
+ import com.packag.androidecommerce.Model.User;
  import com.rengwuxian.materialedittext.MaterialEditText;
  import com.szagurskii.patternedtextwatcher.PatternedTextWatcher;
 
@@ -58,6 +59,66 @@
                 startLoginPage(LoginType.PHONE);
             }
         });
+
+        //Check session
+        if(AccountKit.getCurrentAccessToken() != null)
+        {
+            //auto login
+            //Get User phone and check exist on serve
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+
+                    mService.checkUserExists(account.getPhoneNumber().toString())
+                            .enqueue(new Callback<CheckUserResponse>() {
+                                @Override
+                                public void onResponse(Call<CheckUserResponse> call, Response<CheckUserResponse> response) {
+                                    CheckUserResponse userResponse = response.body();
+                                    if(userResponse.isExists())
+                                    {
+                                        //fetch information
+                                        mService.getUserInformation(account.getPhoneNumber().toString())
+                                                .enqueue(new Callback<User>() {
+                                                    @Override
+                                                    public void onResponse(Call<User> call, Response<User> response) {
+                                                        // if user already exists, just start new Activity
+                                                        alertDialog.dismiss();
+                                                        startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                                                        //close mainactivity
+                                                        finish();
+                                                    }
+                                                    @Override
+                                                    public void onFailure(Call<User> call, Throwable t) {
+                                                        Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+                                    }
+                                    else
+                                    {
+                                        //need register
+                                        alertDialog.dismiss();
+
+                                        showRegisterDialog(account.getPhoneNumber().toString());
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<CheckUserResponse> call, Throwable t) {
+
+                                }
+                            });
+
+                }
+
+                @Override
+                public void onError(AccountKitError accountKitError) {
+                    Log.d("ERROR", accountKitError.getErrorType().getMessage());
+                }
+            });
+
+        }
     }
 
      private void startLoginPage(LoginType loginType) {
@@ -106,8 +167,23 @@
                                              CheckUserResponse userResponse = response.body();
                                              if(userResponse.isExists())
                                              {
-                                                 // if user already exists, just start new Activity
-                                                 alertDialog.dismiss();
+                                                 //fetch information
+                                                 mService.getUserInformation(account.getPhoneNumber().toString())
+                                                         .enqueue(new Callback<User>() {
+                                                             @Override
+                                                             public void onResponse(Call<User> call, Response<User> response) {
+                                                                 // if user already exists, just start new Activity
+                                                                 alertDialog.dismiss();
+                                                                 startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                                                                 //close mainactivity
+                                                                 finish();
+                                                             }
+                                                             @Override
+                                                             public void onFailure(Call<User> call, Throwable t) {
+                                                                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                                             }
+                                                         });
                                              }
                                              else
                                              {
@@ -198,6 +274,10 @@
                                  if(TextUtils.isEmpty(user.getError_msg()))
                                  {
                                      Toast.makeText(MainActivity.this, "User register successfully", Toast.LENGTH_SHORT).show();
+                                     Common.currentUser = response.body();
+                                     //star new activity
+                                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                                     finish();
                                  }
 
                              }
