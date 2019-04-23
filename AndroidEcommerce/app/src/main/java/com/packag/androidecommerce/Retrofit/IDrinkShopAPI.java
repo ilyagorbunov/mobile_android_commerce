@@ -5,6 +5,7 @@ import android.database.Observable;
 import com.packag.androidecommerce.Model.Banner;
 import com.packag.androidecommerce.Model.Category;
 import com.packag.androidecommerce.Model.CheckUserResponse;
+import com.packag.androidecommerce.Model.Drink;
 import com.packag.androidecommerce.Model.User;
 
 
@@ -27,6 +28,10 @@ public interface IDrinkShopAPI {
                                @Field("name") String name,
                                @Field("address") String address,
                                @Field("birthdate") String birthdate);
+
+    @FormUrlEncoded
+    @POST("getdrink.php")
+    io.reactivex.Observable<List<Drink>> getDrink(@Field("menuid") String menuID);
 
     @FormUrlEncoded
     @POST("getuser.php")
