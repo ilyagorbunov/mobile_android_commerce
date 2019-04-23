@@ -3,6 +3,8 @@ package app.com.rentalerbe;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,14 +16,38 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
+import java.util.HashMap;
+import java.util.List;
+
+import app.com.rentalerbe.Adapter.CategoryAdapter;
+import app.com.rentalerbe.Database.DataSource.CartRepository;
+import app.com.rentalerbe.Database.Local.CartDataSource;
+import app.com.rentalerbe.Database.Local.CartDatabase;
+import app.com.rentalerbe.Model.Banner;
+import app.com.rentalerbe.Model.Category;
+import app.com.rentalerbe.Model.Product;
+import app.com.rentalerbe.Retrofit.API;
 import app.com.rentalerbe.Utils.Common;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txt_name, txt_phone;
+    SliderLayout sliderLayout;
+
+    API mService;
+
+    RecyclerView list_menu;
+
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +55,14 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mService = Common.getAPI();
+
+        sliderLayout = (SliderLayout)findViewById(R.id.slider);
+
+        list_menu = (RecyclerView)findViewById(R.id.list_menu);
+        list_menu.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        list_menu.setHasFixedSize(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +88,84 @@ public class HomeActivity extends AppCompatActivity
 
         txt_name.setText(Common.currentUser.getName());
         txt_phone.setText(Common.currentUser.getPhone());
+        
+        getBannerImage();
+        
+        getMenu();
 
+        getTambahList();
+
+        initDB();
+
+    }
+
+    private void initDB() {
+        Common.cartDatabase = CartDatabase.getInstance(this);
+        Common.cartRepository = CartRepository.getInstance(CartDataSource.getInstance(Common.cartDatabase.cartDAO()));
+    }
+
+    private void getTambahList() {
+        compositeDisposable.add(mService.getProductByMenuID(Common.TAMBAH_MENU_ID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Product>>() {
+                    @Override
+                    public void accept(List<Product> products) throws Exception {
+                        Common.tambahList = products;
+                    }
+                }));
+    }
+
+    private void getMenu() {
+        compositeDisposable.add(mService.getMenu()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Category>>() {
+                    @Override
+                    public void accept(List<Category> categories) throws Exception {
+                        displayMenu(categories);
+                    }
+                }));
+    }
+
+    private void displayMenu(List<Category> categories) {
+        CategoryAdapter adapter = new CategoryAdapter(this, categories);
+        list_menu.setAdapter(adapter);
+    }
+
+
+    private void getBannerImage() {
+        compositeDisposable.add(mService.getBanners()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<List<Banner>>() {
+            @Override
+            public void accept(List<Banner> banners) throws Exception {
+                displayImage(banners);
+            }
+        }));
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.dispose();
+        super.onDestroy();
+    }
+
+    private void displayImage(List<Banner> banners) {
+        HashMap<String,String> bannerMap = new HashMap<>();
+        for (Banner item:banners)
+            bannerMap.put(item.getName(),item.getLink());
+
+        for (String name:bannerMap.keySet())
+        {
+            TextSliderView textSliderView = new TextSliderView(this);
+            textSliderView.description(name)
+                    .image(bannerMap.get(name))
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+
+            sliderLayout.addSlider(textSliderView);
+        }
     }
 
     @Override
