@@ -179,6 +179,10 @@
                                                              public void onResponse(Call<User> call, Response<User> response) {
                                                                  // if user already exists, just start new Activity
                                                                  alertDialog.dismiss();
+
+                                                                 //fixed fitst time crash
+                                                                 Common.currentUser = response.body();
+
                                                                  startActivity(new Intent(MainActivity.this,HomeActivity.class));
                                                                  //close mainactivity
                                                                  finish();

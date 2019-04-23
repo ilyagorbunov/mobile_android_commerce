@@ -3,6 +3,7 @@ package com.packag.androidecommerce.Retrofit;
 import android.database.Observable;
 
 import com.packag.androidecommerce.Model.Banner;
+import com.packag.androidecommerce.Model.Category;
 import com.packag.androidecommerce.Model.CheckUserResponse;
 import com.packag.androidecommerce.Model.User;
 
@@ -33,5 +34,8 @@ public interface IDrinkShopAPI {
 
     @GET("getbanner.php")
     io.reactivex.Observable<List<Banner>> getBanners();
+
+    @GET("getmenu.php")
+    io.reactivex.Observable<List<Category>> getMenu();
 
 }
