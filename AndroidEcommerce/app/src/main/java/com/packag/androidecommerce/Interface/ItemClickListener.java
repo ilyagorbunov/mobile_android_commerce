@@ -2,6 +2,6 @@ package com.packag.androidecommerce.Interface;
 
 import android.view.View;
 
-public class ItemClickListener {
+public interface ItemClickListener {
     void onClick(View v);
 }

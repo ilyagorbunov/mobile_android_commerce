@@ -8,28 +8,31 @@ import android.widget.TextView;
 import com.packag.androidecommerce.Interface.ItemClickListener;
 import com.packag.androidecommerce.R;
 
-public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class DrinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
     ImageView img_product;
-    TextView txt_menu_name;
+    TextView txt_drink_name, txt_price;
 
     ItemClickListener itemClickListener;
 
-    public void setItemClickListener(ItemClickListener itemClickListener){
+    public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    public CategoryViewHolder(View itemView){
+    public DrinkViewHolder(View itemView){
         super(itemView);
 
-        img_product = (ImageView)itemView.findViewById(R.id.image_product);
-        txt_menu_name = (TextView)itemView.findViewById(R.id.txt_menu_name);
+        img_product=itemView.findViewById(R.id.imageproduct);
+        txt_drink_name=itemView.findViewById(R.id.txt_drink_name);
+        txt_price=itemView.findViewById(R.id.txt_price);
 
-        itemView.setOnClickListener(this);
     }
 
     @Override
-    public  void onClick(View v){
+    public void onClick(View v) {
+
         itemClickListener.onClick(v);
+
     }
 
 }
