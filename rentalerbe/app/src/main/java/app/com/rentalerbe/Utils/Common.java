@@ -12,7 +12,7 @@ import app.com.rentalerbe.Retrofit.API;
 import app.com.rentalerbe.Retrofit.RetrofitClient;
 
 public class Common {
-    private static final String BASE_URL = "http://192.168.43.249/shop/";
+    public static final String BASE_URL = "http://192.168.43.249/shop/";
 
     public static final String TAMBAH_MENU_ID = "3";
 

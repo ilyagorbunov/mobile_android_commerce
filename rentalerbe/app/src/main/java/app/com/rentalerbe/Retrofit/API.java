@@ -46,5 +46,5 @@ public interface API {
 
     @Multipart
     @POST("upload.php")
-    Call<String> uploadFile(@Part("phone") String phone, @Part MultipartBody.Part file);
+    Call<String> uploadFile(@Part MultipartBody.Part phone, @Part MultipartBody.Part file);
 }
