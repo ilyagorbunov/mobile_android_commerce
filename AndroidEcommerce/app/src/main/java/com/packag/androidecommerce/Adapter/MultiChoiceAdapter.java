@@ -64,7 +64,7 @@ public class MultiChoiceAdapter extends RecyclerView.Adapter<MultiChoiceAdapter.
         public MultiChoiceViewHolder(View itemView) {
             super(itemView);
 
-            checkBox=itemView.findViewById(R.id.chk_topping);
+            checkBox= (CheckBox)itemView.findViewById(R.id.chk_topping);
         }
     }
 }

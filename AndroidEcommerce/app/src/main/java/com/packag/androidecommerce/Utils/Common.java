@@ -23,6 +23,11 @@ public class Common {
     public static double toppingPrice = 0.0;
     public static List<String> toppingAdded = new ArrayList<>();
 
+    // Hold Field
+    public static int sizeOfCup = -1;// -1: number choose (error) ,0:M,1:L
+    public static int sugar = -1;// -1 : No choose(Error)
+    public static int ice = -1;
+
     public static IDrinkShopAPI getAPI()
     {
         return RetrofitClient.getClient(BASE_URL).create(IDrinkShopAPI.class);
