@@ -239,7 +239,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     }
 
-    private void showConfirmDialog(int position, final String number) {
+    private void showConfirmDialog(final int position, final String number) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.confirm_add_to_cart_layout, null);
@@ -287,6 +287,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
                     cartItem.sugar = Common.sugar;
                     cartItem.price = finalPrice;
                     cartItem.tambahExtra = txt_tambah_extra.getText().toString();
+                    cartItem.link = productList.get(position).Link;
 
                     Common.cartRepository.insertToCart(cartItem);
 

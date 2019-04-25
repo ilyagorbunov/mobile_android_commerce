@@ -1,5 +1,6 @@
 package app.com.rentalerbe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -49,6 +51,8 @@ public class HomeActivity extends AppCompatActivity
     RecyclerView list_menu;
 
     NotificationBadge badge;
+
+    ImageView cart_icon;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -188,6 +192,13 @@ public class HomeActivity extends AppCompatActivity
 
         View view = menu.findItem(R.id.cart_menu).getActionView();
         badge = (NotificationBadge)view.findViewById(R.id.badge);
+        cart_icon = (ImageView)view.findViewById(R.id.cart_icon);
+        cart_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,CartActivity.class));
+            }
+        });
         updateCartCount();
 
         return true;
