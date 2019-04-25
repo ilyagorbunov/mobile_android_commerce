@@ -9,11 +9,14 @@ import app.com.rentalerbe.Model.Category;
 import app.com.rentalerbe.Model.Banner;
 import app.com.rentalerbe.Model.CheckUserResponse;
 import app.com.rentalerbe.Model.User;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface API {
     @FormUrlEncoded
@@ -40,4 +43,8 @@ public interface API {
 
     @GET("getmenu.php")
     Observable<List<Category>> getMenu();
+
+    @Multipart
+    @POST("upload.php")
+    Call<String> uploadFile(@Part("phone") String phone, @Part MultipartBody.Part file);
 }
