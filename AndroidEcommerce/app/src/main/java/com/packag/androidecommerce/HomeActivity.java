@@ -23,6 +23,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.packag.androidecommerce.Adapter.CategoryAdapter;
 import com.packag.androidecommerce.Model.Banner;
 import com.packag.androidecommerce.Model.Category;
+import com.packag.androidecommerce.Model.Drink;
 import com.packag.androidecommerce.Retrofit.IDrinkShopAPI;
 import com.packag.androidecommerce.Utils.Common;
 
@@ -101,6 +102,21 @@ public class HomeActivity extends AppCompatActivity
         
         //get menu
         getMenu();
+
+        //save newest topping list
+        getToppingList();
+    }
+
+    private void getToppingList() {
+        compositeDisposable.add(mService.getDrink(Common.TOPPING_MENU_ID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Drink>>() {
+                    @Override
+                    public void accept(List<Drink> drinks) throws Exception {
+                        Common.toppingList = drinks;
+                    }
+                }));
     }
 
     private void getMenu() {

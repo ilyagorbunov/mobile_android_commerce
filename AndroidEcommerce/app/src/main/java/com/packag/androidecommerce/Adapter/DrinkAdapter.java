@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -95,6 +96,13 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkViewHolder>{
         RadioButton rdiIce50=itemView.findViewById(R.id.rdi_ice50);
         RadioButton rdiIce30=itemView.findViewById(R.id.rdi_ice30);
         RadioButton rdiIcefree=itemView.findViewById(R.id.rdi_icefree);
+
+        RecyclerView recyclerTopping = itemView.findViewById(R.id.recycler_topping);
+        recyclerTopping.setLayoutManager(new LinearLayoutManager(context));
+        recyclerTopping.setHasFixedSize(true);
+
+        MultiChoiceAdapter adapter = new MultiChoiceAdapter(context, Common.toppingList);
+        recyclerTopping.setAdapter(adapter);
 
         // Set Data
         Picasso.with(context)
