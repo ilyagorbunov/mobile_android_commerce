@@ -246,7 +246,7 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkViewHolder>{
 
         ImageView img_product_dialog = (ImageView)itemView.findViewById(R.id.img_product);
         final TextView txt_product_dialog = (TextView)itemView.findViewById(R.id.txt_cart_product_name);
-        TextView txt_product_price = (TextView)itemView.findViewById(R.id.txt_cart_product_price);
+        final TextView txt_product_price = (TextView)itemView.findViewById(R.id.txt_cart_product_price);
         TextView txt_sugar = (TextView)itemView.findViewById(R.id.txt_sugar);
         TextView txt_ice = (TextView)itemView.findViewById(R.id.txt_ice);
         final TextView txt_tambah_extra = (TextView)itemView.findViewById(R.id.txt_topping_extra);

@@ -1,5 +1,6 @@
 package com.packag.androidecommerce;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -211,7 +212,12 @@ public class HomeActivity extends AppCompatActivity
         View view = menu.findItem(R.id.cart_menu).getActionView();
         badge = (NotificationBadge)view.findViewById(R.id.badge);
         cart_icon = (ImageView)view.findViewById(R.id.cart_icon);
-        // cart_icon.setOnClickListener(new View.OnClickListener());
+        cart_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,CartActivity.class));
+            }
+        });
 
         updateCartCount();
         return true;
