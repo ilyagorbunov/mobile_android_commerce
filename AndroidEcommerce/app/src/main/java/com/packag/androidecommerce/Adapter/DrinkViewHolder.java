@@ -30,6 +30,8 @@ public class DrinkViewHolder extends RecyclerView.ViewHolder implements View.OnC
         txt_price=itemView.findViewById(R.id.txt_price);
         btn_add_to_cart = itemView.findViewById(R.id.btn_add_cart);
 
+        itemView.setOnClickListener(this);
+
     }
 
     @Override

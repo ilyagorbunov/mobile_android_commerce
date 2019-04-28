@@ -37,13 +37,13 @@ dependencies {
     //implementation 'com.facebook.android:facebook-android-sdk:4.34.0'
     implementation 'com.facebook.android:account-kit-sdk:4.+'
 
-//Slider Layout
+    //Slider Layout
     implementation 'com.android.support:support-v4:27.+'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
 
-//RxJava
+    //RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
 
@@ -51,5 +51,14 @@ dependencies {
 
     //elegant number
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+    // Room Database
+    implementation 'android.arch.persistence.room:runtime:1.1.0'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
+
+    // Notification Badge
+    implementation 'com.nex3z:notification-badge:1.0.2'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 }

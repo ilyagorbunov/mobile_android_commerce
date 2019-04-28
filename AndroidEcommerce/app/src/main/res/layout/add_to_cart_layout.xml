@@ -2,18 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
-        android:layout_margin="8dp"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_margin="8dp"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/img_cart_product"
@@ -21,17 +21,17 @@
             android:layout_height="80dp" />
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/txt_cart_productname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Milk Tea"
+                android:id="@+id/txt_cart_product_name"
+                android:text="Product"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -39,14 +39,13 @@
 
                 <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                     android:id="@+id/txt_count"
+                    android:layout_alignParentRight="true"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     app:initialNumber="1"
                     app:finalNumber="100"
-                    android:layout_alignParentRight="true"
-                    app:backGroundColor="@color/colorAccent">
+                    app:backGroundColor="@color/colorAccent"/>
 
-                </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
             </RelativeLayout>
 
         </LinearLayout>
@@ -71,12 +70,11 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_marginTop="8dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--Group 1 Size of Cup-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -92,14 +90,12 @@
                     android:text="REQUIRED"
                     android:padding="4dp"
                     android:background="@drawable/text_round_grey"
-                    android:textColor="@android:color/white"
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-
 
             </RelativeLayout>
 
@@ -111,7 +107,7 @@
 
                 <RadioGroup
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RadioButton
@@ -130,28 +126,29 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_marginRight="8dp"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="+$0"
+                        android:text="+0"
                         android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="+$3"
+                        android:text="+3"
+                        android:layout_marginTop="8dp"
                         android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+
                 </LinearLayout>
 
 
             </RelativeLayout>
 
-            <!--Group 2 Sugar-->
             <RelativeLayout
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
@@ -168,14 +165,12 @@
                     android:text="REQUIRED"
                     android:padding="4dp"
                     android:background="@drawable/text_round_grey"
-                    android:textColor="@android:color/white"
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-
 
             </RelativeLayout>
 
@@ -191,43 +186,43 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/rdi_sugar100"
+                        android:id="@+id/rdi_sugar_100"
                         android:text="100%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_sugar70"
+                        android:id="@+id/rdi_sugar_70"
                         android:text="70%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_sugar50"
+                        android:id="@+id/rdi_sugar_50"
                         android:text="50%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_sugar30"
+                        android:id="@+id/rdi_sugar_30"
                         android:text="30%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_sugarfree"
+                        android:id="@+id/rdi_sugar_free"
                         android:text="Free"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                </RadioGroup>
 
+                </RadioGroup>
 
 
             </RelativeLayout>
 
-            <!--Group 2 Ice-->
             <RelativeLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -242,14 +237,12 @@
                     android:text="REQUIRED"
                     android:padding="4dp"
                     android:background="@drawable/text_round_grey"
-                    android:textColor="@android:color/white"
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-
 
             </RelativeLayout>
 
@@ -265,42 +258,43 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/rdi_ice100"
+                        android:id="@+id/rdi_ice_100"
                         android:text="100%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_ice70"
+                        android:id="@+id/rdi_ice_70"
                         android:text="70%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_ice50"
+                        android:id="@+id/rdi_ice_50"
                         android:text="50%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_ice30"
+                        android:id="@+id/rdi_ice_30"
                         android:text="30%"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/rdi_icefree"
+                        android:id="@+id/rdi_ice_free"
                         android:text="Free"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+
 
                 </RadioGroup>
 
 
             </RelativeLayout>
 
-            <!--Group 3 Topping-->
             <RelativeLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -311,28 +305,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:text="REQUIRED"
-                    android:padding="4dp"
-                    android:background="@drawable/text_round_grey"
-                    android:textColor="@android:color/white"
-                    android:layout_alignParentRight="true"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_topping"
+                android:layout_marginTop="8dp"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
             </android.support.v7.widget.RecyclerView>
+
+
 
         </LinearLayout>
 

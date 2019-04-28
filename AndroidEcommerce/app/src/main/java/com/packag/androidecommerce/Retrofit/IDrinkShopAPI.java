@@ -37,9 +37,9 @@ public interface IDrinkShopAPI {
     Call<User> getUserInformation(@Field("phone") String phone);
 
     @GET("getbanner.php")
-    io.reactivex.Observable<List<Banner>> getBanners();
+    Observable<List<Banner>> getBanners();
 
     @GET("getmenu.php")
-    io.reactivex.Observable<List<Category>> getMenu();
+    Observable<List<Category>> getMenu();
 
 }
