@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Common {
     //config ip
-    private static final String BASE_URL = "http://192.168.43.103/shop_jamu/";
+    public static final String BASE_URL = "http://192.168.43.103/shop_jamu/";
 
     public static final String TOPPING_MENU_ID = "7";
 

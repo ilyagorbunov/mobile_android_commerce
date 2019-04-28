@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.packag.androidecommerce.Adapter.CategoryAdapter;
 import com.packag.androidecommerce.Database.DataSource.CartRepository;
@@ -32,6 +34,7 @@ import com.packag.androidecommerce.Model.Category;
 import com.packag.androidecommerce.Model.Drink;
 import com.packag.androidecommerce.Retrofit.IDrinkShopAPI;
 import com.packag.androidecommerce.Utils.Common;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,6 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Notification;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.Scheduler;
@@ -62,6 +66,8 @@ public class HomeActivity extends AppCompatActivity
     NotificationBadge badge;
 
     ImageView cart_icon;
+
+    CircleImageView img_avatar;
 
     //Rxjava
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -104,11 +110,28 @@ public class HomeActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         txt_name = (TextView)headerView.findViewById(R.id.txt_name);
         txt_phone = (TextView)headerView.findViewById(R.id.txt_phone);
+        img_avatar = (CircleImageView)headerView.findViewById(R.id.img_avatar);
+
+        img_avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseImage();
+            }
+        });
 
         //set info
         txt_name.setText(Common.currentUser.getName());
         txt_phone.setText(Common.currentUser.getPhone());
 
+        //set avatar
+        if (!TextUtils.isEmpty(Common.currentUser.getAvatarUrl()))
+        {
+            Picasso.with(this)
+                    .load(new StringBuilder(Common.BASE_URL)
+                            .append("user_avatar/")
+                            .append(Common.currentUser.getAvatarUrl()).toString())
+                    .into(img_avatar);
+        }
         //get banner
         getBannerImage();
         
@@ -120,6 +143,11 @@ public class HomeActivity extends AppCompatActivity
 
         //Init Database
         initDB();
+    }
+
+    private void chooseImage() {
+        startActivityForResult(Intent.createChooser(FileUtils.createGetContentIntent(), "Select a file"),
+                PICK_FILE_REQUEST);
     }
 
     private void initDB() {
