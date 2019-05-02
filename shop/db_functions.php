@@ -72,6 +72,45 @@ class DB_Functions{
             return NULL;
         }
     }
+
+    public function getBanners()
+    {
+        $result = $this->conn->query("SELECT * FROM Banner ORDER BY ID LIMIT 3");
+
+        $banners = array();
+
+        while($item = $result->fetch_assoc())
+            $banners[] = $item;
+        return $banners;
+    }
+
+    public function getMenu()
+    {
+        $result = $this->conn->query("SELECT * FROM Menu ORDER BY ID");
+
+        $menu = array();
+
+        while($item = $result->fetch_assoc())
+            $menu[] = $item;
+        return $menu;
+    }
+
+    public function getProductByMenuID($menuId)
+    {
+        $query = "SELECT * FROM Product Where MenuId='".$menuId."'";
+        $result = $this->conn->query($query);
+
+        $products = array();
+
+        while($item = $result->fetch_assoc())
+            $products[] = $item;
+        return $products;
+    }
+
+    public function updateAvatar($phone,$fileName)
+    {
+        return $result = $this->conn->query("UPDATE user SET avatarUrl='$fileName' WHERE Phone='$phone'");
+    }
 }
 
 ?>
