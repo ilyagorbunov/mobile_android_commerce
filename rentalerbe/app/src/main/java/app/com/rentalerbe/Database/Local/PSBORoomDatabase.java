@@ -7,17 +7,20 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import app.com.rentalerbe.Database.ModelDB.Cart;
+import app.com.rentalerbe.Database.ModelDB.Favorite;
 
-@Database(entities = {Cart.class},version = 1)
-public abstract class CartDatabase extends RoomDatabase {
+@Database(entities = {Cart.class, Favorite.class},version = 1)
+public abstract class PSBORoomDatabase extends RoomDatabase {
 
     public abstract CartDAO cartDAO();
-    private static CartDatabase instance;
+    public abstract FavoriteDAO favoriteDAO();
 
-    public static CartDatabase getInstance(Context context)
+    private static PSBORoomDatabase instance;
+
+    public static PSBORoomDatabase getInstance(Context context)
     {
         if (instance == null)
-            instance = Room.databaseBuilder(context,CartDatabase.class, "PSBO_ShopDB")
+            instance = Room.databaseBuilder(context,PSBORoomDatabase.class, "PSBO_ShopDB")
                     .allowMainThreadQueries()
                     .build();
         return instance;

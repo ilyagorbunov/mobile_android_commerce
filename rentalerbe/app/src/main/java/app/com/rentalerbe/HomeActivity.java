@@ -38,8 +38,10 @@ import java.util.List;
 
 import app.com.rentalerbe.Adapter.CategoryAdapter;
 import app.com.rentalerbe.Database.DataSource.CartRepository;
+import app.com.rentalerbe.Database.DataSource.FavoriteRepository;
 import app.com.rentalerbe.Database.Local.CartDataSource;
-import app.com.rentalerbe.Database.Local.CartDatabase;
+import app.com.rentalerbe.Database.Local.FavoriteDataSource;
+import app.com.rentalerbe.Database.Local.PSBORoomDatabase;
 import app.com.rentalerbe.Model.Banner;
 import app.com.rentalerbe.Model.Category;
 import app.com.rentalerbe.Model.Product;
@@ -206,8 +208,9 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void initDB() {
-        Common.cartDatabase = CartDatabase.getInstance(this);
-        Common.cartRepository = CartRepository.getInstance(CartDataSource.getInstance(Common.cartDatabase.cartDAO()));
+        Common.psboRoomDatabase = PSBORoomDatabase.getInstance(this);
+        Common.cartRepository = CartRepository.getInstance(CartDataSource.getInstance(Common.psboRoomDatabase.cartDAO()));
+        Common.favoriteRepository = FavoriteRepository.getInstance(FavoriteDataSource.getInstance(Common.psboRoomDatabase.favoriteDAO()));
     }
 
     private void getTambahList() {

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.com.rentalerbe.Database.DataSource.CartRepository;
-import app.com.rentalerbe.Database.Local.CartDatabase;
+import app.com.rentalerbe.Database.DataSource.FavoriteRepository;
+import app.com.rentalerbe.Database.Local.PSBORoomDatabase;
 import app.com.rentalerbe.Model.Category;
 import app.com.rentalerbe.Model.Product;
 import app.com.rentalerbe.Model.User;
@@ -29,8 +30,10 @@ public class Common {
     public static int ice = -1;
 
 
-    public static CartDatabase cartDatabase;
+    public static PSBORoomDatabase psboRoomDatabase;
     public static CartRepository cartRepository;
+    public static FavoriteRepository favoriteRepository;
+
 
     public static API getAPI()
     {
