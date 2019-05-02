@@ -26,6 +26,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import app.com.rentalerbe.Database.ModelDB.Cart;
+import app.com.rentalerbe.Database.ModelDB.Favorite;
 import app.com.rentalerbe.Interface.ItemClickListener;
 import app.com.rentalerbe.Model.Product;
 import app.com.rentalerbe.R;
@@ -49,7 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ProductViewHolder holder, final int position) {
 
         holder.txt_price.setText(new StringBuffer("Rp.").append(productList.get(position).Price).toString());
         holder.txt_product_name.setText(productList.get(position).Name);
@@ -71,6 +72,41 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Favorite System
+        if(Common.favoriteRepository.isFavorite(Integer.parseInt(productList.get(position).ID))==1)
+            holder.btn_favorite.setImageResource(R.drawable.ic_favorite_black_24dp);
+        else
+            holder.btn_favorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+
+        holder.btn_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Common.favoriteRepository.isFavorite(Integer.parseInt(productList.get(position).ID))!=1) {
+                    addOrRemoveFavorite(productList.get(position),true);
+                    holder.btn_favorite.setImageResource(R.drawable.ic_favorite_black_24dp);
+                }
+                else {
+                    addOrRemoveFavorite(productList.get(position),false);
+                    holder.btn_favorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                }
+            }
+        });
+
+    }
+
+    private void addOrRemoveFavorite(Product product, boolean isAdd) {
+        Favorite favorites = new Favorite();
+        favorites.id = product.ID;
+        favorites.link = product.Link;
+        favorites.name = product.Name;
+        favorites.price = product.Price;
+        favorites.menuId = product.MenuId;
+
+        if(isAdd)
+            Common.favoriteRepository.insertFav(favorites);
+        else
+            Common.favoriteRepository.delete(favorites);
     }
 
     private void showAddToCartDialog(final int position) {
