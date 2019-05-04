@@ -59,4 +59,6 @@ dependencies {
 
     implementation project(":aFileChooser")
 
+    implementation 'com.github.mancj:MaterialSearchBar:0.7.1'
+
 }

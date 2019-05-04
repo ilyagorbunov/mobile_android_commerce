@@ -47,4 +47,7 @@ public interface API {
     @Multipart
     @POST("upload.php")
     Call<String> uploadFile(@Part MultipartBody.Part phone, @Part MultipartBody.Part file);
+
+    @GET("getallproducts.php")
+    Observable<List<Product>> getAllProducts();
 }
