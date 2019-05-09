@@ -39,9 +39,9 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`ID`, `Name`, `Link`) VALUES
-(1, 'Banner 1', 'https://i.ibb.co/W6hf2Wx/cek1.jpg'),
-(2, 'Banner 2', 'https://i.ibb.co/QDVzYM4/cek2.jpg'),
-(3, 'Banner 3', 'https://i.ibb.co/0Vf30F4/cek3.jpg');
+(1, 'Banner 1', 'https://i.ibb.co/whj6D0r/ban1.png'),
+(2, 'Banner 2', 'https://i.ibb.co/bzxyNGS/ban2.png'),
+(3, 'Banner 3', 'https://i.ibb.co/x1G1C46/ban4.png');
 
 -- --------------------------------------------------------
 
