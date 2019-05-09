@@ -111,6 +111,16 @@ class DB_Functions{
     {
         return $result = $this->conn->query("UPDATE user SET avatarUrl='$fileName' WHERE Phone='$phone'");
     }
+
+    public function getAllProducts()
+    {
+        $result = $this->conn->query("SELECT * FROM product WHERE 1") or die($this->conn->error);
+
+        $products = array();
+        while($item = $result->fetch_assoc())
+            $products[] = $item;
+        return $products;
+    }
 }
 
 ?>

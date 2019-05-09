@@ -7,7 +7,7 @@
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.com.rentalerbe.SearchActivity">
+    tools:context=".SearchActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

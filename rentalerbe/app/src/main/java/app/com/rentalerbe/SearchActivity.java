@@ -43,10 +43,10 @@ public class SearchActivity extends AppCompatActivity {
 
         mService= Common.getAPI();
 
-        recycler_search = findViewById(R.id.recycler_search);
+        recycler_search = (RecyclerView)findViewById(R.id.recycler_search);
         recycler_search.setLayoutManager(new GridLayoutManager(this,2));
 
-        searchBar = findViewById(R.id.searchBar);
+        searchBar = (MaterialSearchBar)findViewById(R.id.searchBar);
         searchBar.setHint("Enter Your Product");
 
         loadAllProducts();
@@ -60,13 +60,13 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                List<String> suggest=new ArrayList<>();
-                for(String search:suggestList)
-                {
-                    if(search.toLowerCase().contains(searchBar.getText().toLowerCase()))
-                        suggest.add(search);
-                }
-                searchBar.setLastSuggestions(suggest);
+                    List<String> suggest = new ArrayList<>();
+                    for(String search:suggestList)
+                    {
+                        if(search.toLowerCase().contains(searchBar.getText().toLowerCase()))
+                            suggest.add(search);
+                    }
+                    searchBar.setLastSuggestions(suggest);
             }
 
             @Override
@@ -83,9 +83,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onSearchConfirmed(CharSequence text) {
-
-                startSearch(text);
-
+                    startSearch(text);
             }
 
             @Override
@@ -96,9 +94,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void startSearch(CharSequence text) {
-        List<Product> result=new ArrayList<>();
-        for(Product product:localDataSource)
-            if(product.Name.contains(text))
+        List<Product> result = new ArrayList<>();
+        for (Product product:localDataSource)
+            if (product.Name.contains(text))
                 result.add(product);
         searchAdapter = new ProductAdapter(this,result);
         recycler_search.setAdapter(searchAdapter);
@@ -116,13 +114,8 @@ public class SearchActivity extends AppCompatActivity {
                 .subscribe(new Consumer<List<Product>>() {
                     @Override
                     public void accept(List<Product> products) throws Exception {
-                        displayLastDrink(products);
+                        displayLastProduct(products);
                         buildSuggestList(products);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-
                     }
                 }));
     }
@@ -133,7 +126,7 @@ public class SearchActivity extends AppCompatActivity {
         searchBar.setLastSuggestions(suggestList);
     }
 
-    private void displayLastDrink(List<Product> products) {
+    private void displayLastProduct(List<Product> products) {
         localDataSource = products;
         adapter = new ProductAdapter(this,products);
         recycler_search.setAdapter(adapter);
