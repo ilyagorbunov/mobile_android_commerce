@@ -50,4 +50,12 @@ public interface API {
 
     @GET("getallproducts.php")
     Observable<List<Product>> getAllProducts();
+
+    @FormUrlEncoded
+    @POST("submitorder.php")
+    Call<String> submitOrder(@Field("price") float orderPrice,
+                             @Field("orderDetail") String orderDetail,
+                             @Field("comment") String comment,
+                             @Field("address") String address,
+                             @Field("phone") String phone);
 }
