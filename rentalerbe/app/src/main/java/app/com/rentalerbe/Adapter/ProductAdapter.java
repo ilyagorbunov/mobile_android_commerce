@@ -289,8 +289,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
         Picasso.with(context).load(productList.get(position).Link).into(img_product_dialog);
         txt_product_dialog.setText(new StringBuilder(productList.get(position).Name).append(" x")
-        .append(number)
-        .append(Common.sizeofCup == 0 ? " Size M":" Size L").toString());
+        .append(Common.sizeofCup == 0 ? " Size M":" Size L")
+        .append(number).toString());
 
         txt_ice.setText(new StringBuilder("Ice : ").append(Common.ice).append("%").toString());
         txt_sugar.setText(new StringBuilder("Sugar : ").append(Common.sugar).append("%").toString());
@@ -298,9 +298,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         double price = (Double.parseDouble(productList.get(position).Price) * Double.parseDouble(number)) + Common.tambahPrice;
 
         if (Common.sizeofCup == 1)
-            price+=3.0;
-
-        txt_product_price.setText(new StringBuilder("Rp.").append(price));
+            price += (3.0 * Double.parseDouble(number));
 
         StringBuilder tambah_final_comment = new StringBuilder("");
         for (String line:Common.tambahAdded)
@@ -308,7 +306,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
         txt_tambah_extra.setText(tambah_final_comment);
 
-        final double finalPrice = price;
+        final double finalPrice = Math.round(price);
+
+        txt_product_price.setText(new StringBuilder("Rp.").append(finalPrice));
+
         builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -317,11 +318,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
                 try {
                     Cart cartItem = new Cart();
-                    cartItem.name = txt_product_dialog.getText().toString();
+                    cartItem.name = productList.get(position).Name;
                     cartItem.amount = Integer.parseInt(number);
                     cartItem.ice = Common.ice;
                     cartItem.sugar = Common.sugar;
                     cartItem.price = finalPrice;
+                    cartItem.size = Common.sizeofCup;
                     cartItem.tambahExtra = txt_tambah_extra.getText().toString();
                     cartItem.link = productList.get(position).Link;
 

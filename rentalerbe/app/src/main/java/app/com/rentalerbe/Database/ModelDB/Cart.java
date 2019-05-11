@@ -31,6 +31,9 @@ public class Cart {
     @ColumnInfo(name="ice")
     public int ice;
 
+    @ColumnInfo(name="size")
+    public int size;
+
     @ColumnInfo(name="tambahExtra")
     public String tambahExtra;
 }
