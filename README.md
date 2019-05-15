@@ -8,4 +8,4 @@
 # Tentang Aplikasi
 [`^ kembali ke atas ^`](#)
 
-**Helby-Herb** adalah aplikasi untuk meningkat marwah jamu ditingkat nasional maupun international berbasis *mobile* untuk membantu customer dalam pembelian jamu dengan sajian modern. **Helby-Herb** menyediakan jenis-jenis jamu se-nusantara. **Helby-Herb** juga menyediakan *list* *topping-pilihan* berdasarkan selera customer.
+**Helby-Herb** adalah aplikasi untuk meningkat marwah jamu ditingkat nasional maupun internasional berbasis *mobile* untuk membantu *customers* dalam pembelian jamu dengan sajian modern. **Helby-Herb** menyediakan jenis-jenis jamu se-nusantara. **Helby-Herb** juga menyediakan *list* *topping* pilihan berdasarkan selera *customer*.
