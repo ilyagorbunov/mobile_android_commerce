@@ -14,10 +14,15 @@
 # Teknologi yang Digunakan
 ## Android Studio
 ### Getting Started
+
 **Download and Install Java**
+
 You can download latest JDK from this url : http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
 **Download and Install Android**
+
 You can download latest Android Studio from this url : https://developer.android.com/studio/
+
 ### Package Name
 
 
