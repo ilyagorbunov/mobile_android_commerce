@@ -22,6 +22,6 @@ Use case diagram
 # Activity Diagram
 [`^ kembali ke atas ^`](#)
 
-Acitivyt diagram
+Acitivity diagram
 
-<img src="documentation/Activity_Diagram.jpg">
+<img src="documentation/Activity_Diagram.png">
