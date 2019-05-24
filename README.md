@@ -16,4 +16,4 @@
 
 Use case diagram
 
-<img src="https://github.com/normanfd/Eventman2019/blob/master/img/Use_Case_Diagram.jpg">
+<img src="documentation/Use_Case_Diagram.jpg">
