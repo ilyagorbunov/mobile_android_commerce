@@ -57,6 +57,13 @@ annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
 
 implementation 'com.nex3z:notification-badge:1.0.2'
 implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+implementation 'com.github.mancj:MaterialSearchBar:0.8.1'
+```
+Modul yang digunakan :
+
+```groovy
+implementation project(":aFileChooser")
 ```
 
 # Use Case Diagram
