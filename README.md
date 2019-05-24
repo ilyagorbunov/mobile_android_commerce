@@ -60,11 +60,24 @@ implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 implementation 'com.github.mancj:MaterialSearchBar:0.8.1'
 ```
+Retrofit, Room Database, Picasso, etc.
+
 Modul yang digunakan :
+
+aFileChooser - Android File Chooser. You can download latest from this url : https://github.com/iPaulPro/aFileChooser
 
 ```groovy
 implementation project(":aFileChooser")
 ```
+## XAMPP
+* PHP 7.2.13 (cli) 
+* Support MySQLi
+* Apache
+
+## PostMan
+Digunakan untuk melakukan uji coba REST API yang telah dibuat.
+## Trello
+Digunakan untuk menyusun rencana kerja dan menyelesaikannya secara bersama-sama.
 
 # Use Case Diagram
 [`^ kembali ke atas ^`](#)
