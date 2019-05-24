@@ -13,7 +13,7 @@ import app.com.rentalerbe.Retrofit.API;
 import app.com.rentalerbe.Retrofit.RetrofitClient;
 
 public class Common {
-    public static final String BASE_URL = "http://192.168.43.249/shop/";
+    public static final String BASE_URL = "http://10.5.1.5/store_jamu/";
 
     public static final String TAMBAH_MENU_ID = "3";
 
@@ -29,11 +29,9 @@ public class Common {
     public static int sugar = -1;
     public static int ice = -1;
 
-
     public static PSBORoomDatabase psboRoomDatabase;
     public static CartRepository cartRepository;
     public static FavoriteRepository favoriteRepository;
-
 
     public static API getAPI()
     {
