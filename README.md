@@ -17,3 +17,11 @@
 Use case diagram
 
 <img src="documentation/Use_Case_Diagram.jpg">
+
+
+# Activity Diagram
+[`^ kembali ke atas ^`](#)
+
+Acitivyt diagram
+
+<img src="documentation/Activity_Diagram.jpg">
