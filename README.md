@@ -25,3 +25,17 @@ Use case diagram
 Acitivity diagram
 
 <img src="documentation/Activity_Diagram.png">
+
+# Class Diagram
+[`^ kembali ke atas ^`](#)
+
+Class diagram
+
+<img src="documentation/Class_Diagram.png">
+
+# Sequence Diagram
+[`^ kembali ke atas ^`](#)
+
+Sequence diagram
+
+<img src="documentation/Sequence_Diagram.png">
