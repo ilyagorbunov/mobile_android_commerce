@@ -10,8 +10,10 @@
 
 **Helby-Herb** adalah aplikasi untuk meningkat marwah jamu ditingkat nasional maupun internasional berbasis *mobile* untuk membantu *customers* dalam pembelian jamu dengan sajian modern. **Helby-Herb** menyediakan jenis-jenis jamu se-nusantara. **Helby-Herb** juga menyediakan *list* *topping* pilihan berdasarkan selera *customers*.
 
+
 # Use Case Diagram
 [`^ kembali ke atas ^`](#)
 
-<h1 align="center"><img src="documentation/use_case_diagram.jpg"></h1>
+Use case diagram
 
+<img src="https://github.com/normanfd/Eventman2019/blob/master/img/Use_Case_Diagram.jpg">
