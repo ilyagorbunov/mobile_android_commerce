@@ -79,6 +79,37 @@ Digunakan untuk melakukan uji coba REST API yang telah dibuat.
 ## Trello
 Digunakan untuk menyusun rencana kerja dan menyelesaikannya secara bersama-sama.
 
+# Pembahasan OOP
+
+Inheritance -> ItemCLickListener
+Diimplementasikan di ProductViewHolder dan CategoryViewHolder
+
+Enkapsulasi -> Private, Protected, Public
+
+Polymorphism -> Method Overriding
+
+Penjelasan Lengkap dijelaskan di source code
+
+# Design Pattern
+
+* Adapter -> Recycler View dan List View
+
+* Composite -> Get data from database using retrofit -> compositeDisposable
+
+* Private Class Data
+
+Control write access to class attributes
+Separate data from methods that use it
+Encapsulate class data initialization
+Providing new type of final - final after constructor
+
+* Iterator -> Untuk keperluan looping
+
+# Design Anti Pattern
+
+Poltergeists
+Mushroom Management
+
 # Use Case Diagram
 [`^ kembali ke atas ^`](#)
 
