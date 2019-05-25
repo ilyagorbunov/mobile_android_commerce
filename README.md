@@ -81,8 +81,7 @@ Digunakan untuk menyusun rencana kerja dan menyelesaikannya secara bersama-sama.
 
 # Pembahasan OOP
 
-Inheritance -> ItemCLickListener
-Diimplementasikan di ProductViewHolder dan CategoryViewHolder
+Inheritance -> Listener
 
 Enkapsulasi -> Private, Protected, Public
 
